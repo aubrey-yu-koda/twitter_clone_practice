@@ -1,12 +1,17 @@
 class TweeetsController < ApplicationController
-  before_action :set_tweeet, only: %i[ show edit update destroy ]
+  before_action :set_tweeet, only: [:edit, :update, :destroy ]
   before_action :authenticate_user!, except: [:index, :show]
 
   # GET /tweeets or /tweeets.json
   def index
     @tweeets = Tweeet.all.order("created_at DESC")
     @tweeet = Tweeet.new
-    @users = User.all.order("RANDOM()").where.not(:id=>current_user.id)
+    
+    if user_signed_in?
+      @users = User.all.order("RANDOM()").where.not(:id=>current_user.id)
+    else
+      @users = User.all.order("RANDOM()")
+    end 
   end
 
   # GET /tweeets/1 or /tweeets/1.json
@@ -43,7 +48,7 @@ class TweeetsController < ApplicationController
   def update
     respond_to do |format|
       if @tweeet.update(tweeet_params)
-        format.html { redirect_to tweeet_url(@tweeet), notice: "Tweeet was successfully updated." }
+        format.html { redirect_to root_path, notice: "Tweeet was successfully updated." }
         format.json { render :show, status: :ok, location: @tweeet }
       else
         format.html { render :edit, status: :unprocessable_entity }

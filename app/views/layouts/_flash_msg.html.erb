@@ -24,10 +24,10 @@
     <div id="navbarExample" class="navbar-menu">
         <div class="navbar-end">
             <div class="field is-grouped">
-                <p href="" class="control">
-                    <%= link_to 'New Tweeet', root_path, class: "button is-info is-inverted" %>
-                </p>
                 <% if user_signed_in? %>
+                    <p href="" class="control">
+                        <%= link_to 'New Tweeet', new_tweeet_path, class: "button is-info is-inverted" %>
+                    </p>
                     <p class="control">
                         <%= link_to current_user.name, edit_user_registration_path, class: "button is-info" %>
                     </p>
