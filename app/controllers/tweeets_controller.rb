@@ -9,6 +9,7 @@ class TweeetsController < ApplicationController
     
     if user_signed_in?
       @users = User.all.order("RANDOM()").where.not(:id=>current_user.id)
+      @user = current_user
     else
       @users = User.all.order("RANDOM()")
     end 

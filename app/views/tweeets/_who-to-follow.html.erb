@@ -7,8 +7,12 @@
     <div class="panel-block">
         <article class="media">
             <div class="media-left">
-                <figure class="image is-32x32">
-                    <img src="https://bulma.io/images/placeholders/32x32.png">
+                <figure class="image is-32x32 custom-32-box">
+                    <% if user.avatar.present?%>
+                    <%= image_tag user.avatar.to_s %>
+                    <% else %>
+                    <%= image_tag (asset_path 'no_img.png') %>
+                    <% end %>
                 </figure>
             </div>
             
