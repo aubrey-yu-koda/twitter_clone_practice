@@ -68,6 +68,19 @@ class TweeetsController < ApplicationController
     end
   end
 
+  def like
+    # @tweeet = User.find(params[:id])
+    # @tweeet.likes.create
+    Like.create!(tweeet_id: params[:tweeet_id], user_id: current_user.id)
+    redirect_back(fallback_location: root_path)
+  end
+
+  def dislike
+    @tweeet = Like.where(tweeet_id: params[:tweeet_id], user_id: current_user.id)
+    @tweeet.first.destroy
+    redirect_back(fallback_location: root_path)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tweeet
@@ -76,6 +89,6 @@ class TweeetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tweeet_params
-      params.require(:tweeet).permit(:tweeet)
+      params.require(:tweeet).permit(:tweeet, :image)
     end
 end
