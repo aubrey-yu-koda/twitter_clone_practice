@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'profile_users/:id', to: 'profile_users#show'
   get 'likes/create'
   get 'likes/destroy', to: 'likes#destroy', as: :destroy_like
   devise_for :users, :controllers => {registrations: 'registrations'}

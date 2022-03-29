@@ -32,8 +32,10 @@
 
             <div class="media-content">
                 <div class="content">
-                    <strong><%=tweeet.user.name%></strong> <br>
-                    <small>@<%=tweeet.user.username%></small> <br>
+                    <a href="/profile_users/<%=tweeet.user.id%>">
+                        <strong><%=tweeet.user.name%></strong> <br>
+                        <small>@<%=tweeet.user.username%></small> <br>
+                    </a>
                     <p>
                         <% if tweeet.image.present? %>
                             <%= tweeet.tweeet %>

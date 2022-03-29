@@ -15,8 +15,10 @@
                 <div class="media-content">
                     <div class="content">
                         <p>
-                            <strong><%= current_user.name%></strong>
-                            <small>@<%= current_user.username%></small>
+                            <a href="/profile_users/<%=tweeet.user.id%>">
+                                <strong><%= current_user.name%></strong> <br>
+                                <small>@<%= current_user.username%></small>
+                            </a>
                         </p>
                     </div>
                 </div>
