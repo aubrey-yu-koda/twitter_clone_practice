@@ -10,7 +10,14 @@ gem 'faker'
 gem 'carrierwave', '~> 2.0'
 # gem 'fog'
 # gem 'zencoder'
-gem 'streamio-ffmpeg'
+# gem 'streamio-ffmpeg'
+
+gem 'mime-types'
+# gem 'mini_magick'
+gem 'rmagick'
+gem 'carrierwave-video'
+gem 'carrierwave-video-thumbnailer'
+gem 'carrierwave-ffmpeg'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4'
