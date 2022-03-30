@@ -8,10 +8,10 @@ class TweeetsController < ApplicationController
     @tweeet = Tweeet.new
     
     if user_signed_in?
-      @users = User.all.order("RANDOM()").where.not(:id=>current_user.id)
+      @users = User.all.order("RANDOM()").where.not(:id=>current_user.id).limit(5)
       @user = current_user
     else
-      @users = User.all.order("RANDOM()")
+      @users = User.all.order("RANDOM()").limit(5)
     end 
   end
 

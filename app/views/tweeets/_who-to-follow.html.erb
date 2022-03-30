@@ -19,12 +19,14 @@
             <div class="media-content">
                 <div class="content">
                     <p>
-                        <strong>
-                            <%= user.name %>
-                        </strong> <br>
-                        <small>
-                            @<%= user.username %>
-                        </small>
+                        <a href="/profile_users/<%=user.id%>">
+                            <strong>
+                                <%= user.name %>
+                            </strong> <br>
+                            <small>
+                                @<%= user.username %>
+                            </small>
+                        </a>
                     </p>
                 </div>
             </div>
