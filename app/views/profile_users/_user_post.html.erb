@@ -24,7 +24,12 @@
                         <p>
                             <% if tweeet.image.present? %>
                                 <%= tweeet.tweeet %>
-                                <%= image_tag tweeet.image.to_s %>
+                                <% type = file_type(tweeet.image.to_s)%>
+                                <% if type == 'image'%>
+                                    <%= image_tag tweeet.image.to_s %>
+                                <% elsif type == 'video'%>
+                                    <%= video_tag tweeet.image.to_s, :controls => true %>
+                                <% end %>
                             <% else %>
                                 <%= tweeet.tweeet %>
                             <% end %>
