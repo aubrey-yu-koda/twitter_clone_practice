@@ -255,6 +255,8 @@ GEM
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
     ssrf_filter (1.0.7)
+    streamio-ffmpeg (3.0.2)
+      multi_json (~> 1.8)
     thor (1.2.1)
     tilt (2.0.10)
     turbolinks (5.2.1)
@@ -310,6 +312,7 @@ DEPENDENCIES
   simple_form (~> 5.1)
   spring
   sqlite3 (~> 1.4)
+  streamio-ffmpeg
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 4.1.0)

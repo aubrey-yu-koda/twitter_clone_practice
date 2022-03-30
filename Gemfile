@@ -8,6 +8,9 @@ gem 'rails', '~> 6.1.5'
 
 gem 'faker'
 gem 'carrierwave', '~> 2.0'
+# gem 'fog'
+# gem 'zencoder'
+gem 'streamio-ffmpeg'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4'
