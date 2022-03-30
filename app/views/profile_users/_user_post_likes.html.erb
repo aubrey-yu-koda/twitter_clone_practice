@@ -1,0 +1,39 @@
+<% @likes.each do |like| %>
+    <div class="box">
+        <div class="media">
+            <div class="media-left">
+                <figure class="image is-64x64">
+                     <%# gravatar_image_tag(tweeet.user.email, size: 64, alt: tweeet.user.name)%>
+                    <% if like.user.avatar.present?%>
+                    <%= image_tag like.user.avatar.to_s %>
+                    <% else %>
+                    <%= image_tag (asset_path 'no_img.png') %>
+                    <% end %>
+                    <%# image_tag @user.avatar.avatar %>
+                </figure>
+            </div>
+
+            <div class="media-content">
+                <div class="content">
+                    <a href="/profile_users/<%=like.user.id%>">
+                        <strong><%=like.tweeet.user.name%></strong> <br>
+                        <small>@<%=like.tweeet.user.username%></small> <br>
+                    </a>
+                    <p>
+                        <% if like.tweeet.image.present? %>
+                            <%= like.tweeet.tweeet %>
+                            <% type = file_type(like.tweeet.image.to_s)%>
+                            <% if type == 'image'%>
+                            <%= image_tag like.tweeet.image.to_s %>
+                            <% elsif type == 'video'%>
+                            <%= video_tag like.tweeet.image.to_s, :controls => true %>
+                            <% end %>
+                        <% else %>
+                            <%= like.tweeet.tweeet %>
+                        <% end %>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %>

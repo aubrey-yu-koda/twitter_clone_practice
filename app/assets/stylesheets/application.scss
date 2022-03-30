@@ -43,3 +43,11 @@
  .notification:not(:last-child){
      margin-bottom: 0;
  }
+
+#tab-content section {
+    display: none;
+  }
+  
+#tab-content section.is-active {
+    display: block;
+  }
