@@ -5,4 +5,28 @@ class ProfileUsersController < ApplicationController
 
     @likes = Like.where(user_id: params[:id])
   end
+
+  def create_follow
+    @user = User.find(params[:id])
+    current_user.followees.push(@user)
+    redirect_back(fallback_location: root_url)
+  end
+  
+  def destroy_follow
+    @user = User.find(params[:id])
+    current_user.followed_users.find_by(followee_id: @user.id).destroy
+    redirect_back(fallback_location: root_url)
+  end
+
+  def follower
+    @user = User.find(params[:id])
+    # @follows = @user.followers.order("created_at DESC")
+    @users = Follow.find_by(follower_id: @user.id)
+    @followers = @user.followers
+  end
+
+  def following
+    @user = User.find(params[:id])
+    @followees = @user.followees.order("created_at DESC")
+  end
 end

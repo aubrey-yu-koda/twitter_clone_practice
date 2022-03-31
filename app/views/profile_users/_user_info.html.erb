@@ -17,6 +17,13 @@
                         <p>
                             <strong><%= @user.name%></strong> <br>
                             <small>@<%= @user.username%></small>
+                            <% if current_user.followees.include?(@user) %>
+                                <h5><%= button_to "Unfollow", destroy_follow_path, method: "POST" %></h5>
+                            <% else %>
+                                <h5><%= button_to "Follow", create_follow_path, method: "POST"  %></h5>
+                            <% end %>
+                            <%# link_to 'Followers', user_followers_path(@user) %>
+                            <%# link_to 'Following', user_followees_path(@user) %>
                         </p>
                     </div>
                 </div>
@@ -37,23 +44,27 @@
 
             <div class="level-item has-centered-text">
                 <div>
-                    <p class="heading">
-                        Following
-                    </p>
-                    <p class="title is-6">
-                        123
-                    </p>
+                    <a href="follower">
+                        <p class="heading">
+                            Following
+                        </p>
+                        <p class="title is-6">
+                            <%= @user.followees.count%>
+                        </p>
+                    </a>
                 </div>
             </div>
 
             <div class="level-item has-centered-text">
                 <div>
-                    <p class="heading">
-                        Followers
-                    </p>
-                    <p class="title is-6">
-                    321
-                    </p>
+                    <a href="following">
+                        <p class="heading">
+                            Followers
+                        </p>
+                        <p class="title is-6">
+                            <%= @user.followers.count%>
+                        </p>
+                    </a>
                 </div>
             </div>
         </div>

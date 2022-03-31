@@ -22,6 +22,7 @@
                     <p>
                         <% if like.tweeet.image.present? %>
                             <%= like.tweeet.tweeet %>
+                            <br>
                             <% type = file_type(like.tweeet.image.to_s)%>
                             <% if type == 'image'%>
                             <%= image_tag like.tweeet.image.to_s %>

@@ -1,0 +1,32 @@
+<% if @followees.present? %>
+        <% @followees.each do |followee| %>
+        <div class="column">
+            <div class="box">
+                <div class="media">
+                    <div class="media-left">
+                        <figure class="image is-64x64">
+                            <% if followee.avatar.present?%>
+                            <%= image_tag followee.avatar.to_s %>
+                            <% else %>
+                            <%= image_tag (asset_path 'no_img.png') %>
+                            <% end %>
+                            <%# image_tag @user.avatar.avatar %>
+                        </figure>
+                    </div>
+
+                    <div class="media-content">
+                        <div class="content">
+                            <a href="/profile_users/<%=followee.id%>">
+                                <strong><%=followee.name%></strong> <br>
+                                <small>@<%=followee.username%></small> <br>
+                                
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% end %>
+<% else %>
+    is empty
+<% end %>

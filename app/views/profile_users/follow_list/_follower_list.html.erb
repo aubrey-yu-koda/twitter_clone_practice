@@ -1,0 +1,34 @@
+<% if @followers.present? %>
+    <% @followers.each do |follower| %>
+    <div class="column">
+         <div class="box">
+            <div class="media">
+                <div class="media-left">
+                    <figure class="image is-64x64">
+                        <% if follower.avatar.present?%>
+                        <%= image_tag follower.avatar.to_s %>
+                        <% else %>
+                        <%= image_tag (asset_path 'no_img.png') %>
+                        <% end %>
+                    </figure>
+                </div>
+
+                <div class="media-content">
+                    <div class="content">
+                    <a href="/profile_users/<%=follower.id%>">
+                        <strong><%=follower.name%></strong> <br>
+                        <small>@<%=follower.username%></small> <br>
+                    </a>
+                        <p>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+       
+    <% end %>
+<% else %>
+    is empty
+<% end %>

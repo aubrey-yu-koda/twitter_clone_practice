@@ -39,6 +39,7 @@
                     <p>
                         <% if tweeet.image.present? %>
                             <%= tweeet.tweeet %>
+                            <br>
                             <% type = file_type(tweeet.image.to_s)%>
                             <% if type == 'image'%>
                             <%= image_tag tweeet.image.to_s %>

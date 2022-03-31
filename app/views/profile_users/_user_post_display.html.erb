@@ -9,7 +9,6 @@
                     <% else %>
                     <%= image_tag (asset_path 'no_img.png') %>
                     <% end %>
-                    <%# image_tag @user.avatar.avatar %>
                 </figure>
             </div>
 
@@ -19,10 +18,10 @@
                     <strong><%=tweeet.user.name%></strong> <br>
                     <small>@<%=tweeet.user.username%></small> <br>
                 </a>
-                    
                     <p>
                         <% if tweeet.image.present? %>
                             <%= tweeet.tweeet %>
+                            <br>
                             <% type = file_type(tweeet.image.to_s)%>
                             <% if type == 'image'%>
                                 <%= image_tag tweeet.image.to_s %>
