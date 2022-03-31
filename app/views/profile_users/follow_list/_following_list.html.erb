@@ -1,6 +1,6 @@
 <% if @followees.present? %>
+        <div class="column is-half">
         <% @followees.each do |followee| %>
-        <div class="column">
             <div class="box">
                 <div class="media">
                     <div class="media-left">
@@ -25,8 +25,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-    <% end %>
+        <% end %>
+    </div>
 <% else %>
     is empty
 <% end %>
