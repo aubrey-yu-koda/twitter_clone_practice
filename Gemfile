@@ -18,6 +18,7 @@ gem 'rmagick'
 gem 'carrierwave-video'
 gem 'carrierwave-video-thumbnailer'
 gem 'carrierwave-ffmpeg'
+gem 'ransack'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4'

@@ -1,0 +1,6 @@
+<%= search_form_for @q, url: follower_path, html: {method: :post} do |f| %>
+    <%= f.label :name_or_username_cont %> <br>
+    <%= f.search_field :name_or_username_cont %>
+
+    <%= f.submit %>
+<% end %>

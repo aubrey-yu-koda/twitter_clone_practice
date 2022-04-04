@@ -6,15 +6,17 @@ Rails.application.routes.draw do
 
   post '/profile_users/:id/create_follow', to: "profile_users#create_follow", as: :create_follow
   post '/profile_users/:id/destroy_follow', to: "profile_users#destroy_follow", as: :destroy_follow
-
-  get '/profile_users/:id/follower', to: "profile_users#follower", as: :follower
-  get '/profile_users/:id/following', to: "profile_users#following", as: :following
+  
   resources :profile_users
+  get '/profile_users/:id/follower', to: "profile_users#follower", as: :follower
+  post '/profile_users/:id/follower', to: "profile_users#follower"
 
+  post '/profile_users/:id/following', to: "profile_users#following", as: :following
+  
   # resources :tweeets do
   #   resources :likes
   # end
-
+  
   resources :tweeets do
     get :like, :dislike
   end

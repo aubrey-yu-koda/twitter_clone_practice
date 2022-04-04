@@ -20,9 +20,14 @@ class ProfileUsersController < ApplicationController
 
   def follower
     @user = User.find(params[:id])
-    # @follows = @user.followers.order("created_at DESC")
     @users = Follow.find_by(follower_id: @user.id)
-    @followers = @user.followers
+    @q = User.ransack(params[:q]) 
+    @followers = @q.result
+    if @followers.nil?
+      @followers = Follow.where(follower_id: @user.id, followee_id: @user.id)
+    else
+      @followers = @user.followers
+    end
   end
 
   def following
