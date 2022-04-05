@@ -9,6 +9,23 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag  "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"%>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGkK7KVXxBQBvr3vwCvSwA9wPKkl6MdZA&libraries=places&callback=initMap" async defer data-turbolinks-eval="false"></script> -->
+    <script>
+      let autocomplete;
+      function initAutocomplete(){
+        autocomplete = new google.maps.places.Autocomplete(
+          document.getElementById('autocomplete'),
+          {
+            types: ['establishment'],
+            componnentRestrictions: {'country': ['PH']},
+            fields: ['place_id', 'geometry', 'name']
+          }
+        )
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNeXbH-bDElDPrrO3cPtyfO4L07k4L6aY&libraries=places&callback=initAutocomplete" async defer data-turbolinks-eval="false"></script>
+
   </head>
 
   <body>
