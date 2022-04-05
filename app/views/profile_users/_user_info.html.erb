@@ -45,7 +45,7 @@
             <div class="level-item has-centered-text">
                 <div>
                     <%# <a href="follower"> %>
-                    <%= link_to follower_url(@user), method: 'GET' do%>
+                    <%= link_to following_url(@user), method: 'GET' do%>
                         <p class="heading">
                             Following
                         </p>
@@ -59,7 +59,7 @@
 
             <div class="level-item has-centered-text">
                 <div>
-                    <%= link_to following_url(@user), method: 'GET' do%>
+                    <%= link_to follower_url(@user), method: 'GET' do%>
                         <p class="heading">
                             Followers
                         </p>

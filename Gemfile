@@ -18,7 +18,10 @@ gem 'rmagick'
 gem 'carrierwave-video'
 gem 'carrierwave-video-thumbnailer'
 gem 'carrierwave-ffmpeg'
-gem 'gmaps-autocomplete-rails'
+# gem 'gmaps-autocomplete-rails'
+gem 'pg_search'
+
+
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3', '~> 1.4'
 gem 'pg', '~> 1.3', '>= 1.3.5'
