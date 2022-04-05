@@ -1,5 +1,10 @@
 <% if @followers.present? %>
     <div class="column is-half">
+    <%= form_with(url: follower_url, method: :get) do |f| %>
+        <%= label_tag(:query, "Search for") %>
+        <%= text_field_tag(:query) %>
+        <%= submit_tag("Search", class: "is-info") %>
+    <% end %>
     <% @followers.each do |follower| %>
          <div class="box">
             <div class="media">

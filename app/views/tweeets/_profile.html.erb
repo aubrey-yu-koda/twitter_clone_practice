@@ -39,23 +39,27 @@
 
                 <div class="level-item has-centered-text">
                     <div>
-                        <p class="heading">
-                            Following
-                        </p>
-                        <p class="title is-6">
-                            123
-                        </p>
+                        <%= link_to following_url(@user), method: 'GET' do%>
+                            <p class="heading">
+                                Following
+                            </p>
+                            <p class="title is-6">
+                                <%= @user.followees.count%>
+                            </p>
+                        <% end %>
                     </div>
                 </div>
 
                 <div class="level-item has-centered-text">
                     <div>
-                        <p class="heading">
-                            Followers
-                        </p>
-                        <p class="title is-6">
-                        321
-                        </p>
+                        <%= link_to follower_url(@user), method: 'GET' do%>
+                            <p class="heading">
+                                Followers
+                            </p>
+                            <p class="title is-6">
+                                <%= @user.followers.count%>
+                            </p>
+                        <% end %>
                     </div>
                 </div>
             </div>
