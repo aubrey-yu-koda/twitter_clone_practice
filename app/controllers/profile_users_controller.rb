@@ -31,6 +31,12 @@ class ProfileUsersController < ApplicationController
 
   def following
     @user = User.find(params[:id])
-    @followees = @user.followees.order("created_at DESC")
+    # @followees = @user.followees.order("created_at DESC")
+    @users = Follow.find_by(followee_id: @user.id)
+    if params[:query].present?
+      @followees = User.joins(:followers).search(params[:query]).where.not(:id=>current_user.id)
+    else
+      @followees = @user.followees
+    end
   end
 end
