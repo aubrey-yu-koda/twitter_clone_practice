@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2022_04_05_062126) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.string "image"
-    t.string "address"
+    t.text "address"
   end
 
   create_table "users", force: :cascade do |t|
