@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'payments/index'
+  get 'payments/show'
+  get 'payments/new'
+  get 'payments/create'
+  get 'payments/delete'
   get 'profile_users/:id', to: 'profile_users#show'
   get 'likes/create'
   get 'likes/destroy', to: 'likes#destroy', as: :destroy_like
