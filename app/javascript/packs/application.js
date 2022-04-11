@@ -25,8 +25,8 @@ import $ from 'jquery'
 //     window.dispatchEvent(event)
 // }
 
-$(document).ready(function() {
-  $('#tabs li').on('click', function() {
+$(document).ready(function () {
+  $('#tabs li').on('click', function () {
     var tab = $(this).data('tab');
 
     $('#tabs li').removeClass('is-active');
@@ -38,14 +38,15 @@ $(document).ready(function() {
 
   // This is your test publishable API key.
   const stripe = Stripe("pk_test_51KlTTvC0nawSk6U4hdGPBQk8AFjVzHAHookAXlzxiUf2eGZKrqxqqeZLZsFFBeoPuscVOjIrwbRfXIuboyAMlrnv00rdhZoLVL");
+
   // var 
   // The items the customer wants to buy
-  // const items = [{ id: "xl-tshirt" }];
+  const items = [{ id: "xl-tshirt" }];
 
-  // let elements = stripe.elements({
+  // var elements = stripe.elements({
   //   clientSecret: 'sk_test_51KlTTvC0nawSk6U4e4GFZZ0t2guUFeQqjikgeZiNAqov2tE3PwagFNAgzRtfKxgFvj88WOj70P2a6fX0yp0ceFwb00Yayw2hQA',
   // });
-  var elements = stripe.elements();
+  var elements = stripe.elements({});
   var cardElement = elements.create('card');
   cardElement.mount('#card-element');
 
@@ -63,11 +64,12 @@ $(document).ready(function() {
     const response = await fetch("/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         paymentMethodType: 'card',
-        currency: 'ph'
-       }),
-    }).then(r=>r.json());
+        currency: 'php',
+        items: [{ id: "pi_3KmDTUC0nawSk6U41n9ismZQ" }]
+      }),
+    }).then(r => r.json());
     const { clientSecret } = await response.json();
 
     const appearance = {
@@ -83,11 +85,24 @@ $(document).ready(function() {
     e.preventDefault();
     setLoading(true);
 
+    stripe
+      .confirmCardPayment('{PAYMENT_INTENT_CLIENT_SECRET}', {
+        payment_method: {
+          card: cardElement,
+          billing_details: {
+            name: 'Jenny Rosen',
+          },
+        },
+      })
+      .then(function (result) {
+        // Handle result.error or result.paymentIntent
+      });
+
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000/checkout.html",
+        return_url: "http://localhost:3000/payments/show",
       },
     });
 
@@ -119,14 +134,14 @@ $(document).ready(function() {
     // const { paymentIntent } = await stripe.retrievePaymentIntent(clientSecret);
     const { paymentIntent } = await stripe.confirmCardPayment(
       clientSecret, {
-        payment_method: {
-          card: cardElement,
-          billing_details: {
-            name: nameInput.value,
-            email: emailInput.value,
-          }
+      payment_method: {
+        card: cardElement,
+        billing_details: {
+          name: nameInput.value,
+          email: emailInput.value,
         }
-      });
+      }
+    });
     switch (paymentIntent.status) {
       case "succeeded":
         showMessage("Payment succeeded!");
@@ -141,34 +156,36 @@ $(document).ready(function() {
         showMessage("Something went wrong.");
         break;
     }
-  }
 
-  // ------- UI helpers -------
+    // ------- UI helpers -------
 
-  function showMessage(messageText) {
-    const messageContainer = document.querySelector("#payment-message");
+    function showMessage(messageText) {
+      const messageContainer = document.querySelector("#payment-message");
 
-    messageContainer.classList.remove("hidden");
-    messageContainer.textContent = messageText;
+      messageContainer.classList.remove("hidden");
+      messageContainer.textContent = messageText;
 
-    setTimeout(function () {
-      messageContainer.classList.add("hidden");
-      messageText.textContent = "";
-    }, 4000);
-  }
-
-  // Show a spinner on payment submission
-  function setLoading(isLoading) {
-    if (isLoading) {
-      // Disable the button and show a spinner
-      document.querySelector("#submit").disabled = true;
-      document.querySelector("#spinner").classList.remove("hidden");
-      document.querySelector("#button-text").classList.add("hidden");
-    } else {
-      document.querySelector("#submit").disabled = false;
-      document.querySelector("#spinner").classList.add("hidden");
-      document.querySelector("#button-text").classList.remove("hidden");
+      setTimeout(function () {
+        messageContainer.classList.add("hidden");
+        messageText.textContent = "";
+      }, 4000);
     }
-}
+
+    // Show a spinner on payment submission
+    function setLoading(isLoading) {
+      if (isLoading) {
+        // Disable the button and show a spinner
+        document.querySelector("#submit").disabled = true;
+        document.querySelector("#spinner").classList.remove("hidden");
+        document.querySelector("#button-text").classList.add("hidden");
+      } else {
+        document.querySelector("#submit").disabled = false;
+        document.querySelector("#spinner").classList.add("hidden");
+        document.querySelector("#button-text").classList.remove("hidden");
+      }
+    }
+  }
+
 });
+
 

@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
-  get 'payments/index'
-  get 'payments/show'
-  get 'payments/new'
-  get 'payments/create'
-  get 'payments/delete'
+  resources :payments, only: [:create, :show]
   get 'profile_users/:id', to: 'profile_users#show'
   get 'likes/create'
   get 'likes/destroy', to: 'likes#destroy', as: :destroy_like
@@ -16,13 +12,11 @@ Rails.application.routes.draw do
   get '/profile_users/:id/following', to: "profile_users#following", as: :following
   resources :profile_users
 
-  # resources :tweeets do
-  #   resources :likes
-  # end
-
   resources :tweeets do
     get :like, :dislike
   end
+
+  # post '/create-payment-intent' 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root "tweeets#index"
 end
