@@ -37,17 +37,18 @@
                         <small>@<%=tweeet.user.username%></small> <br>
                     </a>
                     <p>
+                    <%= tweeet.tweeet %><br>
                         <% if tweeet.image.present? %>
-                            <%= tweeet.tweeet %>
-                            <br>
                             <% type = file_type(tweeet.image.to_s)%>
                             <% if type == 'image'%>
                             <%= image_tag tweeet.image.to_s %>
                             <% elsif type == 'video'%>
                             <%= video_tag tweeet.image.to_s, :controls => true %>
                             <% end %>
-                        <% else %>
-                            <%= tweeet.tweeet %>
+                        <% end %>
+                        <% if tweeet.address.present? %>
+                        <br>
+                            <small><i class="fa fa-map-marker" aria-hidden="true"></i> <%= tweeet.address %></small>
                         <% end %>
                     </p>
                 </div>
